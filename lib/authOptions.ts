@@ -29,9 +29,9 @@ export const authOptions: NextAuthOptions = {
     async signIn({ account, profile }): Promise<boolean> {
       if (account && account.provider === "google") {
         const googleProfile = profile as CustomGoogleProfile;
-        console.log(googleProfile)
+        console.log(googleProfile, process.env.MY_EMAIL);
         return (
-          profile !== null &&
+          googleProfile !== null &&
           googleProfile.email === process.env.MY_EMAIL
         );
       }
