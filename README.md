@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Job/ Internship Application Tracker
+
+## Context
+
+A simple website to track job applications, it's hunting season and I can't track the applications I've sent. Also, I need a good process to improve my applications over time and see what works and what doesn't.
+
+## Features
+
+- Add /Update a new application
+- Add notes to check which CV you have sent and which version.
 
 ## Getting Started
 
-First, run the development server:
+First fill the needed informations in the `.env` file
+
+For local development
 
 ```bash
+npm i
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The `YOUR_EMAIL` variable is necessary to make sure only you can access the website.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contribution Guidelines
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Fork the repository
+- Create a new branch
+- Make your changes
+- Create a pull request
+- Wait for the review
+- Merge the pull request
+- Celebrate 🎉
 
-## Learn More
+### Good practices ( or good ones for me)
 
-To learn more about Next.js, take a look at the following resources:
+- Organize your imports
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  - React imports
+  - Library imports
+  - Ui Imports
+  - Your file imports
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Organize components
 
-## Deploy on Vercel
+  - React related states
+  - Library Hooks
+  - Api functions
+  - Use Effects
+  - Return statements
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Keep it simple and clean ! 🙋
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Improvements
+
+- Make the website more secure by moving the email check to a middleware
+- Add more filtering
+- Add a scraping bot that fills the form for your
+- Export to google sheets or CSV file so you can change the website if it's useless.
