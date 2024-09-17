@@ -1,5 +1,10 @@
 "use client";
 
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SelectValue } from "@radix-ui/react-select";
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,10 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { SelectValue } from "@radix-ui/react-select";
-import { SubmitHandler, useForm } from "react-hook-form";
-import * as z from "zod";
+
 import { Select, SelectContent, SelectItem, SelectTrigger } from "./ui/select";
 import { Textarea } from "./ui/textarea";
 
@@ -36,7 +38,7 @@ const formSchema = z.object({
   company: z.string(),
 });
 
-type FormSchema = z.infer<typeof formSchema>;
+export type FormSchema = z.infer<typeof formSchema>;
 
 interface ApplicationsFormProps {
   fetchApplications: () => void;

@@ -5,7 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import ApplicationForm from "@/components/new-application";
+import ApplicationForm, { FormSchema } from "@/components/new-application";
 import {
   Card,
   CardContent,
@@ -56,7 +56,7 @@ export default function Applications() {
   const router = useRouter();
 
   const { data: session, status } = useSession();
-  useKeyboardShortcut(["A"], (_) => setNewApplicationDialogOpen(true), {
+  useKeyboardShortcut(["A"], () => setNewApplicationDialogOpen(true), {
     overrideSystem: false,
     ignoreInputFields: true,
     repeatOnHold: false,
@@ -68,7 +68,7 @@ export default function Applications() {
     setApplications(data);
   };
 
-  const createApplication = async (values: any) => {
+  const createApplication = async (values: FormSchema) => {
     const res = await fetch("/api/applications", {
       method: "POST",
       headers: {
@@ -78,7 +78,7 @@ export default function Applications() {
     });
     return res.ok;
   };
-  const updateApplication = async (id: string, values: any) => {
+  const updateApplication = async (id: string, values: FormSchema) => {
     const res = await fetch("/api/applications", {
       method: "PUT",
       headers: {
@@ -216,10 +216,10 @@ export default function Applications() {
                         <ApplicationForm
                           onSuccess={() => setUpdatedAppDialogOpen(false)}
                           fetchApplications={fetchApplications}
-                          submitApi={(values: any) =>
+                          submitApi={(values: FormSchema) =>
                             updateApplication(app.id, values)
                           }
-                          defaultValues={app as any}
+                          defaultValues={app as FormSchema}
                         />
                         <DialogClose asChild>
                           <Button variant="ghost">Close</Button>

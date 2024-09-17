@@ -1,19 +1,17 @@
-// app/auth/signin/page.js
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
+  CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
 } from "@/components/ui/card";
 
 export default function SignIn() {
-  const searchParams = useSearchParams();
   const callbackUrl = "/applications";
 
   return (
