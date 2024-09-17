@@ -7,7 +7,7 @@ import { authOptions } from "@/lib/authOptions";
 export async function GET() {
   const session = await getServerSession(authOptions);
 
-  if (!session || session!.user!.email !== process.env.YOUR_EMAIL) {
+  if (!session || session!.user!.email !== process.env.MY_EMAIL) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -25,7 +25,7 @@ export async function GET() {
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
 
-  if (!session || session!.user!.email !== process.env.YOUR_EMAIL) {
+  if (!session || session!.user!.email !== process.env.MY_EMAIL) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -54,7 +54,7 @@ export async function POST(request: Request) {
 export async function PUT(request: Request) {
   const session = await getServerSession(authOptions);
 
-  if (!session || session!.user!.email !== process.env.YOUR_EMAIL) {
+  if (!session || session!.user!.email !== process.env.MY_EMAIL) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

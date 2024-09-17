@@ -20,7 +20,7 @@ npm i
 npm run dev
 ```
 
-The `YOUR_EMAIL` variable is necessary to make sure only you can access the website.
+The `MY_EMAIL` variable is necessary to make sure only you can access the website.
 
 ## Contribution Guidelines
 
