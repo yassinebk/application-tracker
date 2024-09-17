@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 
 export default function SignIn() {
-  const callbackUrl = "/applications";
+  const callbackUrl = "/";
 
   return (
     <Card className="w-[350px] mx-auto mt-20">

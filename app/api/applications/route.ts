@@ -1,4 +1,3 @@
-// app/api/applications/route.js
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 
