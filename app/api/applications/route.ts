@@ -35,6 +35,7 @@ export async function POST(request: Request) {
       data: {
         link: data.link,
         role: data.role,
+        country: data.country,
         type: data.type,
         location: data.location,
         status: data.status,
@@ -78,6 +79,7 @@ export async function PUT(request: Request) {
         link: data.link,
         role: data.role,
         type: data.type,
+        country: data.country,
         location: data.location,
         status: data.status,
         notes: data.notes,

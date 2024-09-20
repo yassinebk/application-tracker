@@ -67,6 +67,7 @@ model Application {
   role            String
   type            String
   location        String
+  country         String?
   company         String?
   status          Status   @default(TO_APPLY)
   notes           String

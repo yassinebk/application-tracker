@@ -19,11 +19,15 @@ import { Input } from "@/components/ui/input";
 
 import { Select, SelectContent, SelectItem, SelectTrigger } from "./ui/select";
 import { Textarea } from "./ui/textarea";
+import { APPLICATION_TYPES } from "@/lib/types";
 
 const formSchema = z.object({
   link: z.string().url({ message: "Please enter a valid URL" }),
   role: z.string().min(2, { message: "Role must be at least 2 characters" }),
   type: z.string().min(2, { message: "Type must be at least 2 characters" }),
+  country: z
+    .string()
+    .min(2, { message: "Country must be at least 2 characters" }),
   location: z
     .string()
     .min(2, { message: "Location must be at least 2 characters" }),
@@ -59,6 +63,7 @@ const ApplicationForm: React.FC<ApplicationsFormProps> = ({
       link: "",
       role: "",
       company: "",
+      country: "",
       type: "",
       location: "",
       status: "TO_APPLY",
@@ -121,12 +126,40 @@ const ApplicationForm: React.FC<ApplicationsFormProps> = ({
         />
         <FormField
           control={form.control}
+          name="country"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Country</FormLabel>
+              <FormControl>
+                <Input placeholder="France.." {...field} />
+              </FormControl>
+              <FormDescription>The country of the company.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
           name="type"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Type</FormLabel>
               <FormControl>
-                <Input placeholder="Full-time" {...field} />
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select job type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {APPLICATION_TYPES.map((type) => (
+                      <SelectItem key={type} value={type}>
+                        {type.replace("_", " ")}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </FormControl>
               <FormDescription>
                 The type of job (e.g., Full-time, Part-time)
