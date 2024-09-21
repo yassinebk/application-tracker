@@ -32,9 +32,7 @@ import {
 } from "@/components/ui/dialog";
 import ApplicationForm, { FormSchema } from "@/components/new-application";
 import ApplicationTableRow from "@/components/applications-table-row";
-import {
-  Application,
-} from "@/lib/types";
+import { Application } from "@/lib/types";
 import Loading from "@/components/loading";
 import ApplicationsFilter from "@/components/applications-filter";
 
@@ -85,7 +83,13 @@ export default function Applications() {
   };
 
   const deleteApplication = async (id: string) => {
-    const res = await fetch(`/api/applications?id=${id}`, { method: "DELETE" });
+    const res = await fetch(`/api/applications`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id,
+      }),
+    });
     if (res.ok) {
       await fetchApplications();
     }
@@ -151,8 +155,11 @@ export default function Applications() {
           <CardTitle>Applications</CardTitle>
         </CardHeader>
         <CardContent>
-          <ApplicationsFilter applications={applications} setApplications={setFilteredApplications} />
-  
+          <ApplicationsFilter
+            applications={applications}
+            setApplications={setFilteredApplications}
+          />
+
           <Table>
             <TableHeader>
               <TableRow>

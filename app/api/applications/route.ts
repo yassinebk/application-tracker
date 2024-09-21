@@ -90,7 +90,42 @@ export async function PUT(request: Request) {
     return NextResponse.json(application, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to create application" },
+      { error: "Failed to update application" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request: Request) {
+  const session = await getServerSession(authOptions);
+
+  if (!session || session!.user!.email !== process.env.MY_EMAIL) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    
+    const data = await request.json();
+    const application = await prisma.application.findUnique({
+      where: { id: data.id },
+    });
+    if (!application) {
+      return NextResponse.json(
+        { error: "Application not found" },
+        { status: 404 }
+      );
+    }
+
+    await prisma.application.delete({
+      where: {
+        id: application.id,
+      },
+    });
+
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to delete application" },
       { status: 500 }
     );
   }
